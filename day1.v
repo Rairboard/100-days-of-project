@@ -1,3 +1,13 @@
+/*
+This project is a classic puzzle game, Lemming where small creatures walk autonomously across terrain, 
+and the player assigns them abilities to navigate obstacles and reach an exit. 
+This module is part of my HDLBits progress tracker, implementing a Mealy/Moore FSM in Verilog that models a single Lemming's behavior.
+
+The FSM has 7 states: walk left, walk right, fall left, fall right, dig left, dig right, and dead. The Lemming starts walking left on reset. 
+It reverses direction on a wall bump, digs when commanded while grounded, and falls when ground disappears, 
+remembering its last walking direction for when it lands. A 32-bit counter tracks consecutive falling cycles; 
+landing after more than 20 cycles causes the Lemming to splatter and enter a permanent dead state, zeroing all outputs until reset
+*/
 module top_module(
     input clk,
     input areset,    // Freshly brainwashed Lemmings walk left.
